@@ -1,4 +1,4 @@
-package com.raczkowski.entity.cascadetypes;
+package com.raczkowski.entity.cascadetypes.all;
 
 import javax.persistence.*;
 
@@ -11,14 +11,15 @@ public class Product {
 
     private String productName;
 
-    @ManyToOne
-    private Client client;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Brand brand;
 
     public Product() {
     }
 
-    public Product(String productName) {
+    public Product(String productName, Brand brand) {
         this.productName = productName;
+        this.brand = brand;
     }
 
     public Long getId() {
@@ -37,11 +38,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public Client getClient() {
-        return client;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 }

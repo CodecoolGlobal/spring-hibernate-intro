@@ -1,4 +1,4 @@
-package com.raczkowski.entity.cascadetypes;
+package com.raczkowski.entity.cascadetypes.all;
 
 import javax.persistence.*;
 import java.util.List;

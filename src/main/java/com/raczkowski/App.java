@@ -1,7 +1,7 @@
 package com.raczkowski;
 
-import com.raczkowski.entity.cascadetypes.Client;
-import com.raczkowski.entity.cascadetypes.Product;
+import com.raczkowski.entity.cascadetypes.all.Client;
+import com.raczkowski.entity.cascadetypes.all.Product;
 import com.raczkowski.repository.ClientRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,11 +30,21 @@ public class App {
     @Bean
     public CommandLineRunner runner() {
         return (args) -> {
-            List<Product> products = samplesProvider.createProductSamples();
-            Client przemek = new Client("Przemyslaw", "Raczkowski", products);
+            Client client = saveCascadeAllSamples();
 
-            clientRepository.save(przemek);
+            removeCascadeAllSamplesFromDB(client);
         };
     }
 
+    private Client saveCascadeAllSamples() {
+        List<Product> products = samplesProvider.createProductSamples();
+        Client przemek = new Client("Przemyslaw", "Raczkowski", products);
+
+
+        return clientRepository.save(przemek);
+    }
+
+    private void removeCascadeAllSamplesFromDB(Client client) {
+        clientRepository.delete(client);
+    }
 }

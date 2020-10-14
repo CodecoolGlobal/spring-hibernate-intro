@@ -1,7 +1,7 @@
 package com.raczkowski;
 
-import com.raczkowski.entity.cascadetypes.Client;
-import com.raczkowski.entity.cascadetypes.Product;
+import com.raczkowski.entity.cascadetypes.all.Brand;
+import com.raczkowski.entity.cascadetypes.all.Product;
 import com.raczkowski.entity.collections.User;
 import com.raczkowski.entity.embedded.Address;
 import com.raczkowski.entity.embedded.RealEstate;
@@ -80,8 +80,9 @@ public class SamplesProvider {
     }
 
     public List<Product> createProductSamples() {
-        return asList(new Product("SomeProduct"),
-                new Product("AnotherProduct"));
+        return asList(
+                new Product("Mars", new Brand("Nestle")),
+                new Product("Berlinki", new Brand("JeronimoMartins")));
     }
 
 }
