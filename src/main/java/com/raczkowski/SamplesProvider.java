@@ -79,10 +79,10 @@ public class SamplesProvider {
         return new TwoWheeler("Kross", 3);
     }
 
-    public List<Product> createProductSamples() {
+    public List<Product> createProductSamples(Brand... brands) {
         return asList(
-                new Product("Mars", new Brand("Nestle")),
-                new Product("Berlinki", new Brand("JeronimoMartins")));
+                new Product("Mars", brands[0]),
+                new Product("Berlinki", brands[1]));
     }
 
 }

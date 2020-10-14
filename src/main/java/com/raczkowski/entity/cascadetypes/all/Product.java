@@ -11,7 +11,7 @@ public class Product {
 
     private String productName;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     private Brand brand;
 
     public Product() {
