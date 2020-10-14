@@ -6,11 +6,14 @@ import com.raczkowski.entity.cascadetypes.all.Product;
 import com.raczkowski.repository.BrandRepository;
 import com.raczkowski.repository.ClientRepository;
 import com.raczkowski.repository.ProductRepository;
+import org.hibernate.SessionFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 @SpringBootApplication
@@ -22,14 +25,18 @@ public class App {
 
     private final SamplesProvider samplesProvider;
 
+    private EntityManagerFactory entityManagerFactory;
+
     public App(ClientRepository clientRepository,
                ProductRepository productRepository,
                BrandRepository brandRepository,
-               SamplesProvider samplesProvider) {
+               SamplesProvider samplesProvider,
+               EntityManagerFactory entityManagerFactory) {
         this.clientRepository = clientRepository;
         this.productRepository = productRepository;
         this.brandRepository = brandRepository;
         this.samplesProvider = samplesProvider;
+        this.entityManagerFactory = entityManagerFactory;
     }
 
     public static void main(String[] args) {
@@ -39,9 +46,9 @@ public class App {
     @Bean
     public CommandLineRunner runner() {
         return (args) -> {
-            Client client = saveClientManually();
 
-            clientRepository.delete(client);
+            saveBrandUsingEntityManager();
+
         };
     }
 
@@ -65,5 +72,14 @@ public class App {
 
         Client przemek = new Client("Przemyslaw", "Raczkowski", products);
         return clientRepository.save(przemek);
+    }
+
+    private void saveBrandUsingEntityManager(){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(new Brand("Brand"));
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 }
