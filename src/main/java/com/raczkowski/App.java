@@ -1,12 +1,11 @@
 package com.raczkowski;
 
-import com.raczkowski.entity.cascadetypes.all.Brand;
-import com.raczkowski.entity.cascadetypes.all.Client;
-import com.raczkowski.entity.cascadetypes.all.Product;
+import com.raczkowski.entity.cascadetypes.Brand;
+import com.raczkowski.entity.cascadetypes.Client;
+import com.raczkowski.entity.cascadetypes.Product;
 import com.raczkowski.repository.BrandRepository;
 import com.raczkowski.repository.ClientRepository;
 import com.raczkowski.repository.ProductRepository;
-import org.hibernate.SessionFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,9 +21,7 @@ public class App {
     private final ClientRepository clientRepository;
     private final ProductRepository productRepository;
     private final BrandRepository brandRepository;
-
     private final SamplesProvider samplesProvider;
-
     private EntityManagerFactory entityManagerFactory;
 
     public App(ClientRepository clientRepository,
@@ -46,16 +43,13 @@ public class App {
     @Bean
     public CommandLineRunner runner() {
         return (args) -> {
-
             saveBrandUsingEntityManager();
-
         };
     }
 
     private Client saveCascadeAllSamples() {
         List<Product> products = samplesProvider.createProductSamples();
         Client przemek = new Client("Przemyslaw", "Raczkowski", products);
-
 
         return clientRepository.save(przemek);
     }

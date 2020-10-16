@@ -1,4 +1,4 @@
-package com.raczkowski.entity.cascadetypes.all;
+package com.raczkowski.entity.other;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,18 +6,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Brand {
+public class Property {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String address;
 
-    private String brandName;
-
-    public Brand() {
+    public Property() {
     }
 
-    public Brand(String brandName) {
-        this.brandName = brandName;
+    public Property(String address) {
+        this.address = address;
     }
 
     public Long getId() {
@@ -28,11 +28,11 @@ public class Brand {
         this.id = id;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public String getAddress() {
+        return address;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

@@ -1,7 +1,7 @@
 package com.raczkowski;
 
-import com.raczkowski.entity.cascadetypes.all.Brand;
-import com.raczkowski.entity.cascadetypes.all.Product;
+import com.raczkowski.entity.cascadetypes.Brand;
+import com.raczkowski.entity.cascadetypes.Product;
 import com.raczkowski.entity.collections.User;
 import com.raczkowski.entity.embedded.Address;
 import com.raczkowski.entity.embedded.RealEstate;
